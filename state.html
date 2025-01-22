@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>  
+    <meta charset="UTF-8" />    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+       
+    <title>Document</title>
+
+       
+    <!-- Mengimpor pustaka React untuk membangun antarmuka pengguna -->
+
+       
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <!-- Mengimpor pustaka ReactDOM untuk merender elemen React ke dalam DOM -->
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- Mengimpor Babel untuk mendukung penulisan JSX dalam skrip -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+     
+  </head>
+   
+  <body>
+       
+    <!-- Elemen ini akan menjadi tempat untuk merender aplikasi React -->
+    
+    <div id="root"></div>
+       
+    <script type="text/babel">
+      // Definisi kelas Halo yang merupakan komponen React
+
+      class Halo extends React.Component {
+        // Constructor digunakan untuk inisialisasi state dan menerima props
+
+        constructor(props) {
+          super(props); // Memanggil constructor dari kelas parent (React.Component)
+
+          this.state = {
+            warna: 'red', // State awal untuk warna
+
+            salam: 'Halo', // State awal untuk salam
+          };
+        } // Metode render untuk menampilkan elemen JSX di browser
+
+        render() {
+          return (
+            <div>
+              {/* Menampilkan teks dengan warna sesuai state.warna dan teks salam sesuai state.salam */}             {' '}
+              <h2 style={{ color: this.state.warna }}>
+              {this.state.salam}, saya {this.props.nama}             
+              {' '}
+              </h2>
+              {/* Tombol untuk mengubah warna dengan memanggil metode ubahWarna */}              
+              <button onClick={this.ubahWarna}>Ubah Warna</button>             
+              {' '}
+              {/* Tombol untuk mengubah salam dengan memanggil metode ubahSalam */}              <button onClick={this.ubahSalam}>Ubah Salam</button>           {' '}
+            </div>
+          );
+        } // Metode untuk mengubah warna secara acak
+
+        ubahWarna = () => {
+          let warna = ['red', 'blue', 'green', 'purple']; // Array warna yang tersedia
+
+          this.setState({
+            warna: warna[Math.floor(Math.random() * warna.length)], // Memilih warna secara acak dari array
+          });
+        }; // Metode untuk mengubah salam secara acak
+
+        ubahSalam = () => {
+          let salam = ['Hai', 'Selamat Pagi', 'Selamat Siang', 'Halo']; // Array salam yang tersedia
+
+          this.setState({
+            salam: salam[Math.floor(Math.random() * salam.length)], // Memilih salam secara acak dari array
+          });
+        };
+      } // Merender komponen Halo ke dalam elemen HTML dengan id 'root'
+
+      ReactDOM.render(<Halo nama="Purli" />, document.getElementById('root'));
+    </script>
+
+     
+  </body>
+</html>

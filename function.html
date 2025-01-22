@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- Mengimpor pustaka React untuk membangun antarmuka pengguna -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+
+    <!-- Mengimpor pustaka ReactDOM untuk merender elemen React ke dalam DOM -->
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <!-- Mengimpor Babel untuk mendukung sintaks JSX dalam skrip -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <!-- Elemen ini akan menjadi tempat untuk merender aplikasi React -->
+    <div id="root"></div>
+
+    <script type="text/babel">
+      // Komponen fungsional sederhana yang menerima props
+      function Halo(props) {
+        return <h1>Halo, nama saya {props.nama}</h1>;
+        // Menampilkan teks "Halo, saya" diikuti dengan nilai dari props.nama
+      }
+
+      // Komponen berbasis kelas yang mewarisi dari React.Component
+      class Kenalan extends React.Component {
+        render() {
+          // Metode render untuk menampilkan elemen JSX
+          return (
+            <div>
+              {/* Memanggil komponen Halo dengan props nama */}
+              <Halo nama={this.props.nama} />
+              {/* Menampilkan teks "Saya dari" diikuti dengan nilai dari props.kota */}
+              <h2>Saya dari {this.props.kota}</h2>
+            </div>
+          );
+        }
+      }
+
+      // Elemen React yang mencakup dua instance komponen Kenalan
+      const element = (
+        <div>
+          {/* Merender komponen Kenalan dengan props nama dan kota */}
+          <Kenalan nama="purli" kota="sidoarjo" />
+          <Kenalan nama="tiyok" kota="seplok" />
+        </div>
+      );
+
+      // Merender elemen ke dalam elemen HTML dengan id 'root'
+      ReactDOM.render(element, document.getElementById('root'));
+    </script>
+  </body>
+</html>
